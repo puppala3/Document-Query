@@ -1,6 +1,6 @@
 # Document Query RAG Application
 
-A Streamlit-based application for document querying using NVIDIA NIM and Meta Llama 3 through LangChain integration. Upload PDFs and interact with their content using advanced RAG (Retrieval Augmented Generation) capabilities.
+A Streamlit-based application for document querying using NVIDIA NIM and Meta Llama 3 through LangChain integration. An effective application to query single or multiple pdf documents using RAG capabilities leveraging the inferencing of NVIDIA NIM
 
 ## Features
 - PDF document processing and analysis
