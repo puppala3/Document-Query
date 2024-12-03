@@ -13,7 +13,7 @@ import tempfile
 # Load environment variables
 load_dotenv()
 
-#Track performance using Langsmith
+#Tracking performance using Langsmith
 os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
 os.environ["LANGCHAIN_TRACING_V2"]="true"
 os.environ["LANGCHAIN_PROJECT"]="Chat with Document"
