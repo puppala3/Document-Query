@@ -1,3 +1,12 @@
+---
+license: apache-2.0
+title: Document_Query_LLM
+sdk: streamlit
+emoji: 🏆
+colorFrom: green
+colorTo: red
+short_description: Document_Query_LLM
+---
 # Document Query RAG Application
 
 A Streamlit-based application for document querying using NVIDIA NIM and Meta Llama 3 through LangChain integration. An effective application to query single or multiple pdf documents using RAG capabilities leveraging the inferencing of NVIDIA NIM
