@@ -21,7 +21,7 @@ A Streamlit-based application for document querying using NVIDIA NIM and Meta Ll
 
 ## Prerequisites
 - Python 3.10
-- NVIDIA API Key
+- NVIDIA, LangChain and Hugging Face API keys
 
 ## Create an environment and Install dependencies
 ### Environment creation
