@@ -55,7 +55,7 @@ Streamlit offers a quick way to turn python code into web apps. In this project,
 - **langchain_community** -  for buiding applications using LLMs, including document loaders and vector stores
 - **streamlit** - for creating web-based user interface
 ## User Interface
-
+![image alt](https://github.com/puppala3/Document-Query/blob/main/User%20Interface.PNG?raw=true)
 ## Application Flow
 - User can upload pdf documents with browse option and click process
 - Uploaded documents wii be split into 700-character chunks with 50-character overlap
