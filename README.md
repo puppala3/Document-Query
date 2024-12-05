@@ -158,8 +158,12 @@ response = retrieval_chain.invoke({'input': prompt1})
 - Then add the hf token in the github. Settings->Secrets and variables->Actions->New repository secret
 - Commit the changes and the files get pushed to hugging face
 - Add the LangChain API key to Hugging Face space.Settings->Variables and secrets->secrets
+# Limitations
+- It fails to answer questions if a context is not found. Let’s say, you upload 10 different short stories and query for number of storing with happy endings. This is because RAG couldn’t get the relevant context for the query
+- It can’t read texts from the images. Documents come with both texts and images and a multimodal model will help in that case.
 
-
+# Conclusion
+- Document Query RAG App is an elegant solution making complex document analysis and information retrieval accessible and efficient for users across different domains. 
 ## Note
 - User Requires valid NVIDIA API key with sufficient credits for embeddings and inference.
 
