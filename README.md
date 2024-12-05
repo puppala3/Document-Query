@@ -54,33 +54,53 @@ Streamlit offers a quick way to turn python code into web apps. In this project,
 - **langchain_nvidia_ai_endpoints** - Provides integration with nvidia-ai_endpoints for embeddings and LLM capbilities
 - **langchain_community** -  for buiding applications using LLMs, including document loaders and vector stores
 - **streamlit** - for creating web-based user interface
+## User Interface
 
-## Create an environment and Install dependencies
-### Environment creation
+## Application Flow
+- User can upload pdf documents with browse option and click process
+- Uploaded documents wii be split into 700-character chunks with 50-character overlap
+- NVIDIA NIM creates NVIDIA embeddings which will be stored in FAISS Index vector database
+- User will be notified once the vector base is ready and then user can start querying
+- Retriever retrieves relevant contexts based on similarity match between query embeddings and vector store embeddings
+- Meta Llama 3 processes actual user query along with retrieved contexts to generate accurate responses
+
+## Code Execution
+### Create an environment and Install dependencies
+- Environment creation
 ```bash
 conda create -p name python==3.10 -y
 ```
-### Environment activation
+- Environment activation
 ```bash
 conda activate name/
 ```
-### Install dependencies from requirements.txt
+- Install dependencies from requirements.txt
 ```bash
 pip install -r requirments.txt
 ```
-## Create '.env' file
+- Create '.env' file
 NVIDIA_API_KEY=your_api_key_here
 
-## Running the application in a terminal<br>
+### Running the application in a terminal<br>
 ```bash
 streamlit run app.py
 ```
-## Application Flow
-- Uploaded documents are split into 700-character chunks with 50-character overlap
-- NVIDIA NIM creates embeddings stored in FAISS Index vector database
-- RAG pipeline retrieves relevant contexts which is fed to LLM
-- Meta Llama 3 processes user queries along with retrieved contexts to generate accurate responses
+## Code Walk
 ### Document processing pipeline
+- Converting the uploaded pdfs to LangChain readable format
+```bash
+#processing uploaded documents
+all_documents = []
+for uploaded_file in uploaded_files:
+# Process PDF
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
+         temp_file.write(uploaded_file.getvalue())
+         temp_file_path = temp_file.name
+    loader = PyPDFLoader(temp_file_path)
+    documents = loader.load()
+```
+- Splitting documents into chucks
+
 ```bash
 # Split documents into chunks
 text_splitter = RecursiveCharacterTextSplitter(
@@ -88,16 +108,34 @@ text_splitter = RecursiveCharacterTextSplitter(
     chunk_overlap=50
 )
 split_documents = text_splitter.split_documents(documents)
+```
 
-# Create embeddings and vector store
+### Create embeddings and vector store
+- Creating NVIDIA Embeddings and storing in a vector store
+```bash
 embeddings = NVIDIAEmbeddings()
 vectors = FAISS.from_documents(all_documents, embeddings)
 ```
 ### LLM and RAG pipeline
+- ChatNVIDIA is to access the META Llama 3 model.
+- Prompt1 is the actual query from the user.
+- Retriever retrieves relevant contexts based on similarity match between query embeddings and vector store embeddings.
+- Retrieval chain then feeds the actual user query and relevant contexts to the LLM for accurate reponse.
+
 ```bash
 # Initialize LLM
 llm = ChatNVIDIA(model="meta/llama3-70b-instruct")
-
+prompt = ChatPromptTemplate.from_template(
+    """
+    Answer the questions based on the provided context only.
+    Please provide the most accurate response based on the question
+    <context>
+    {context}
+    </context>
+    Question: {input}
+    """
+    )
+prompt1 = st.text_input("Enter your question about the documents:")
 # Create RAG chain
 document_chain = create_stuff_documents_chain(llm, prompt)
 retriever = st.session_state.vectors.as_retriever()
@@ -106,11 +144,6 @@ retrieval_chain = create_retrieval_chain(retriever, document_chain)
 # Generate response
 response = retrieval_chain.invoke({'input': prompt1})
 ```
-## Built With
-- Streamlit - Web framework
-- LangChain - LLM framework
-- NVIDIA NIM - AI endpoints
-- FAISS - Vector database
 ## Note
 - Requires valid NVIDIA API key with sufficient credits for embeddings and inference.
 
