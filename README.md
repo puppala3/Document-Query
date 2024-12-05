@@ -157,7 +157,7 @@ response = retrieval_chain.invoke({'input': prompt1})
 - Create a main.yml file in the github with an integration code in managing spaces with github actions
 - Then add the hf token in the github. Settings->Secrets and variables->Actions->New repository secret
 - Commit the changes and the files get pushed to hugging face
-- 5.	Add the LangChain API key to Hugging Face space.Settings->Variables and secrets->secrets
+- Add the LangChain API key to Hugging Face space.Settings->Variables and secrets->secrets
 
 
 ## Note
