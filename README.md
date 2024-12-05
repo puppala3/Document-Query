@@ -45,7 +45,7 @@ streamlit run app.py
 ```
 ## Application Flow
 - Uploaded documents are split into 700-character chunks with 50-character overlap
-- NVIDIA NIM creates embeddings stored in FAISS vector database
+- NVIDIA NIM creates embeddings stored in FAISS Index vector database
 - RAG pipeline retrieves relevant contexts which is fed to LLM
 - Meta Llama 3 processes user queries along with retrieved contexts to generate accurate responses
 ### Document processing pipeline
