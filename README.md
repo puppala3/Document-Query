@@ -145,5 +145,5 @@ retrieval_chain = create_retrieval_chain(retriever, document_chain)
 response = retrieval_chain.invoke({'input': prompt1})
 ```
 ## Note
-- Requires valid NVIDIA API key with sufficient credits for embeddings and inference.
+- User Requires valid NVIDIA API key with sufficient credits for embeddings and inference.
 
