@@ -29,7 +29,7 @@ NVIDIA NIM (NVIDIA Inference Microservices) is a cloud AI service that provides 
 LangChain is a framework for developing applications powered by language models. It's extensively used in this project for document loading, text splitting, creating embeddings, vector storage, and constructing the retrieval chain. LangChain simplifies the process of building complex LLM-powered applications.
 - **LangSmith**:
 LangSmith is a platform for debugging, testing, and monitoring LLM applications. In this project, it's used for performance tracking, as indicated by the environment variables set for LANGCHAIN_TRACING_V2 and LANGCHAIN_PROJECT.
--**Streamlit**:
+- **Streamlit**:
 Streamlit offers a quick way to turn python code into web apps. In this project, it's used to build the entire user interface, handling document uploads, user inputs, and displaying responses. Streamlit enables rapid development of interactive data applications.
 - **Hugging Face**:
  Hugging Face is a platform that provides access to a wide range of pre-trained models and datasets, which can be easily integrated into AI applications. It is used  for the GenAI app deployment
