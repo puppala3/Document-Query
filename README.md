@@ -48,12 +48,12 @@ Streamlit offers a quick way to turn python code into web apps. In this project,
 - NVIDIA, LangChain and Hugging Face API keys
 
 ## Libraries used
-- python-dotenv - to load environment variables from .env file
-- pypdf - reading and extracting text from pdf
-- faiss-cpu - for similarity search and clustering dense vectors
-- langchain_nvidia_ai_endpoints - Provides integration with nvidia-ai_endpoints for embeddings and LLM capbilities
-- langchain_community -  for buiding applications using LLMs, including document loaders and vector stores
-- streamlit - for creating web-based user interface
+- **python-dotenv** - to load environment variables from .env file
+- **pypdf** - reading and extracting text from pdf
+- **faiss-cpu** - for similarity search and clustering dense vectors
+- **langchain_nvidia_ai_endpoints** - Provides integration with nvidia-ai_endpoints for embeddings and LLM capbilities
+- **langchain_community** -  for buiding applications using LLMs, including document loaders and vector stores
+- **streamlit** - for creating web-based user interface
 
 ## Create an environment and Install dependencies
 ### Environment creation
