@@ -58,7 +58,7 @@ Streamlit offers a quick way to turn python code into web apps. In this project,
 ![image alt](https://github.com/puppala3/Document-Query/blob/main/User%20Interface.PNG?raw=true)
 ## Application Flow
 - User can upload pdf documents with browse option and click process
-- Uploaded documents wii be split into 700-character chunks with 50-character overlap
+- Uploaded documents will be split into 700-character chunks with 50-character overlap
 - NVIDIA NIM creates NVIDIA embeddings which will be stored in FAISS Index vector database
 - User will be notified once the vector base is ready and then user can start querying
 - Retriever retrieves relevant contexts based on similarity match between query embeddings and vector store embeddings
@@ -86,6 +86,14 @@ NVIDIA_API_KEY=your_api_key_here
 streamlit run app.py
 ```
 ## Code Walk
+### LangSmith for tracing
+- Naming the project for tracing and API key loading
+```bash
+#Tracking performance using Langsmith
+os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_TRACING_V2"]="true"
+os.environ["LANGCHAIN_PROJECT"]="Chat with Document"
+```
 ### Document processing pipeline
 - Converting the uploaded pdfs to LangChain readable format
 ```bash
@@ -144,6 +152,14 @@ retrieval_chain = create_retrieval_chain(retriever, document_chain)
 # Generate response
 response = retrieval_chain.invoke({'input': prompt1})
 ```
+# Deployment in Hugging Face
+- Create a new space in spaces of Hugging Face and also generate HF token
+- Create a main.yml file in the github with an integration code in managing spaces with github actions
+- Then add the hf token in the github. Settings->Secrets and variables->Actions->New repository secret
+- Commit the changes and the files get pushed to hugging face
+- 5.	Add the LangChain API key to Hugging Face space.Settings->Variables and secrets->secrets
+
+
 ## Note
 - User Requires valid NVIDIA API key with sufficient credits for embeddings and inference.
 
